@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Beaumont - AI Automation Engineer | Pyyne Digital Application</title>
+    <script crossorigin src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background-color: #FAFAF8;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(250, 250, 248, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+            z-index: 100;
+            padding: 0.75rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-brand {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.875rem;
+            text-decoration: none;
+            color: #666;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #8b7355;
+            border-bottom-color: #8b7355;
+        }
+
+        /* Header */
+        .header {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #FAFAF8 0%, #f5f5f0 100%);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .header-subtitle {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 1.25rem;
+            color: #8b7355;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .header-meta {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.875rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        .header-description {
+            font-size: 1.125rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: #fff;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+            padding: 2rem;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #8b7355;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .stat-label {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.875rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+            color: #1a1a1a;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(139, 115, 85, 0.2);
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid rgba(26, 26, 26, 0.1);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: #8b7355;
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1a1a1a;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(139, 115, 85, 0.1);
+            color: #8b7355;
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .card-expand {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.875rem;
+            color: #8b7355;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .card-details {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* Expandable Agent Cards */
+        .agent-card {
+            background: #fff;
+            border: 1px solid rgba(26, 26, 26, 0.1);
+            padding: 2rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .agent-card:hover {
+            border-color: #8b7355;
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.1);
+        }
+
+        .agent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            cursor: pointer;
+        }
+
+        .agent-title-group h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #1a1a1a;
+        }
+
+        .agent-version {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            color: #8b7355;
+            transition: transform 0.3s ease;
+        }
+
+        .expand-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .agent-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.7;
+            margin-top: 1rem;
+        }
+
+        .agent-details {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .detail-row {
+            margin-bottom: 1rem;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1rem;
+        }
+
+        .detail-label {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.875rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .detail-value {
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Integration Pills */
+        .integrations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .integration-pill {
+            background: linear-gradient(135deg, rgba(139, 115, 85, 0.05) 0%, rgba(139, 115, 85, 0.02) 100%);
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #8b7355;
+        }
+
+        /* Architecture Diagram */
+        .architecture-container {
+            background: #fff;
+            border: 1px solid rgba(26, 26, 26, 0.1);
+            padding: 2rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        svg {
+            min-width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(139, 115, 85, 0.2);
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            margin-left: 120px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -80px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            background: #8b7355;
+            border: 3px solid #FAFAF8;
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px rgba(139, 115, 85, 0.2);
+        }
+
+        .timeline-date {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.875rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Results Section */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .result-card {
+            background: #fff;
+            border: 1px solid rgba(26, 26, 26, 0.1);
+            padding: 2rem;
+            border-radius: 4px;
+        }
+
+        .result-metric {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #8b7355;
+            font-family: system-ui, -apple-system, sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.875rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .result-description {
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #fff 0%, #f5f5f0 100%);
+            border: 1px solid rgba(26, 26, 26, 0.1);
+            padding: 3rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: #8b7355;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            border-bottom-color: #8b7355;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 2rem;
+            text-align: center;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.875rem;
+            border-top: 1px solid rgba(139, 115, 85, 0.3);
+        }
+
+        footer a {
+            color: #8b7355;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        footer a:hover {
+            border-bottom-color: #8b7355;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                font-size: 0.75rem;
+                gap: 0.5rem;
+            }
+
+            .nav-links a {
+                padding: 0.4rem 0.5rem;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.75rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                margin-left: 80px;
+            }
+
+            .timeline-item::before {
+                left: -60px;
+            }
+
+            .detail-row {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // Scroll Reveal Hook
+        function useReveal() {
+            const ref = useRef(null);
+            const [isVisible, setIsVisible] = useState(false);
+
+            useEffect(() => {
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                        observer.unobserve(entry.target);
+                    }
+                }, { threshold: 0.1 });
+
+                if (ref.current) {
+                    observer.observe(ref.current);
+                }
+
+                return () => observer.disconnect();
+            }, []);
+
+            return [ref, isVisible];
+        }
+
+        // Animated Counter
+        function AnimatedCounter({ value, duration = 2000 }) {
+            const [count, setCount] = useState(0);
+            const ref = useRef(null);
+
+            useEffect(() => {
+                let animationFrameId;
+                const startTime = Date.now();
+
+                const animate = () => {
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    setCount(Math.floor(value * progress));
+
+                    if (progress < 1) {
+                        animationFrameId = requestAnimationFrame(animate);
+                    }
+                };
+
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        animationFrameId = requestAnimationFrame(animate);
+                        observer.unobserve(ref.current);
+                    }
+                });
+
+                if (ref.current) {
+                    observer.observe(ref.current);
+                }
+
+                return () => {
+                    cancelAnimationFrame(animationFrameId);
+                    observer.disconnect();
+                };
+            }, [value, duration]);
+
+            return <span ref={ref}>{count.toLocaleString()}</span>;
+        }
+
+        // Nav Component
+        function Nav() {
+            const [activeSection, setActiveSection] = useState('role-match');
+
+            const sections = [
+                { id: 'role-match', label: 'Role Match' },
+                { id: 'approach', label: 'Consulting Approach' },
+                { id: 'agents', label: 'Production Agents' },
+                { id: 'architecture', label: 'Architecture' },
+                { id: 'integrations', label: 'Integrations' },
+                { id: 'operations', label: 'Operations Platform' },
+                { id: 'results', label: 'Client Results' },
+                { id: 'experience', label: 'Experience' },
+                { id: 'why-pyyne', label: 'Why Pyyne' },
+            ];
+
+            const scrollToSection = (id) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    setActiveSection(id);
+                }
+            };
+
+            return (
+                <nav>
+                    <div className="nav-container">
+                        <div className="nav-brand">Harry Beaumont</div>
+                        <ul className="nav-links">
+                            {sections.map(section => (
+                                <li key={section.id}>
+                                    <a
+                                        href={`#${section.id}`}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            scrollToSection(section.id);
+                                        }}
+                                        className={activeSection === section.id ? 'active' : ''}
+                                    >
+                                        {section.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </nav>
+            );
+        }
+
+        // Header Component
+        function Header() {
+            return (
+                <div className="header">
+                    <div className="header-content">
+                        <h1>Harry Beaumont</h1>
+                        <div className="header-subtitle">AI Automation Engineer</div>
+                        <div className="header-meta">Application · AI Automation Engineer · Pyyne Digital</div>
+                        <p className="header-description">
+                            Consulting AI engineer with 3+ years running production automation systems. I scope workflow automations for SMEs, then architect and build custom agents, integrations, and platforms that non-technical teams can operate at scale.
+                        </p>
+                    </div>
+                </div>
+            );
+        }
+
+        // Stats Bar Component
+        function StatsBar() {
+            const stats = [
+                { number: 5, label: 'Production Agents' },
+                { number: 112000, label: 'Lines of Code' },
+                { number: 30, label: 'AI Tools' },
+                { number: 20, label: 'API Integrations' },
+                { number: 70, label: 'Live Properties' },
+            ];
+
+            return (
+                <div className="stats-bar">
+                    <div className="stats-container">
+                        {stats.map((stat, idx) => (
+                            <div key={idx} className="stat-item">
+                                <div className="stat-number">
+                                    {stat.number >= 1000 ? (
+                                        <>
+                                            <AnimatedCounter value={stat.number} duration={2000} />
+                                            {stat.number >= 112000 && '+'}
+                                        </>
+                                    ) : (
+                                        <AnimatedCounter value={stat.number} duration={2000} />
+                                    )}
+                                </div>
+                                <div className="stat-label">{stat.label}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Role Match Cards
+        function RoleMatchSection() {
+            const [ref, isVisible] = useReveal();
+
+            const cards = [
+                {
+                    title: "I Scope AND Build",
+                    description: "Consulting foundation with engineering chops in one person. I identify which workflows will drive ROI, then architect and build the agents to execute them.",
+                },
+                {
+                    title: "Custom-Built, Not Off-the-Shelf",
+                    description: "Built a 4,600-line WhatsApp bridge instead of using Zapier or n8n because clients need context-aware logic. I understand when to integrate vs. build vs. go deeper.",
+                },
+                {
+                    title: "Non-Technical Stakeholders",
+                    description: "7 years running property businesses taught me what operators actually need. I design systems for non-technical teams to run solo, with dashboards that make sense to them.",
+                },
+                {
+                    title: "Production Experience, Not POCs",
+                    description: "3+ years of live systems with real consequences. These agents process 227 messages/day and handle £450k/month in financial workflows. Not prototypes.",
+                },
+                {
+                    title: "Repeatable Architecture",
+                    description: "The 5-agent pattern works across verticals. Same consulting and engineering approach whether it's hospitality, property management, or another SME workflow.",
+                },
+                {
+                    title: "Consulting First, Engineering Second",
+                    description: "I map business processes, identify bottlenecks, and scope what custom automation is worth building. Then I hand over systems that operators can actually run.",
+                },
+            ];
+
+            return (
+                <section id="role-match" ref={ref} className={`reveal ${isVisible ? 'active' : ''}`}>
+                    <h2 className="section-title">Role Match</h2>
+                    <div className="cards-grid">
+                        {cards.map((card, idx) => (
+                            <div key={idx} className="card">
+                                <h3 className="card-title">{card.title}</h3>
+                                <p className="card-description">{card.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        // Consulting Approach Section
+        function ConsultingApproachSection() {
+            const [ref, isVisible] = useReveal();
+
+            const steps = [
+                {
+                    title: "Identify",
+                    description: "Find the highest-ROI workflows to automate. Not every process needs automation. I help clients see which ones move the needle.",
+                },
+                {
+                    title: "Map",
+                    description: "Document the current process end-to-end. Understand what's manual, where bottlenecks are, and what data flows where.",
+                },
+                {
+                    title: "Scope",
+                    description: "Define what to build (custom agents), integrate (APIs), and leave manual (not everything should be automated). Set realistic scope and timelines.",
+                },
+                {
+                    title: "Build",
+                    description: "Custom agents, API integrations, dashboards, and monitoring. Systems designed for your team to run, not for me to babysit.",
+                },
+                {
+                    title: "Hand Over",
+                    description: "Training, documentation, and dashboards that make sense to non-technical operators. The system runs itself; I step back.",
+                },
+            ];
+
+            return (
+                <section id="approach" ref={ref} className={`reveal ${isVisible ? 'active' : ''}`}>
+                    <h2 className="section-title">Consulting Approach</h2>
+                    <div className="cards-grid">
+                        {steps.map((step, idx) => (
+                            <div key={idx} className="card">
+                                <h3 className="card-title">{step.title}</h3>
+                                <p className="card-description">{step.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        // Agents Section
+        function AgentCard({ agent, expanded, onToggle }) {
+            return (
+                <div className="agent-card">
+                    <div className="agent-header" onClick={onToggle}>
+                        <div className="agent-title-group">
+                            <h3>{agent.title}</h3>
+                            <div className="agent-version">{agent.version}</div>
+                        </div>
+                        <div className={`expand-icon ${expanded ? 'open' : ''}`}>▼</div>
+                    </div>
+                    <p className="agent-description">{agent.description}</p>
+                    {agent.tags && (
+                        <div className="card-tags">
+                            {agent.tags.map((tag, idx) => (
+                                <span key={idx} className="tag">{tag}</span>
+                            ))}
+                        </div>
+                    )}
+                    {expanded && agent.details && (
+                        <div className="agent-details">
+                            {agent.details.map((detail, idx) => (
+                                <div key={idx} className="detail-row">
+                                    <div className="detail-label">{detail.label}</div>
+                                    <div className="detail-value">{detail.value}</div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        function AgentsSection() {
+            const [ref, isVisible] = useReveal();
+            const [expandedAgent, setExpandedAgent] = useState(0);
+
+            const agents = [
+                {
+                    title: "Communications Agent",
+                    version: "v3.1",
+                    description: "Handles incoming messages, classifies intent across 22 categories, and auto-sends responses with 100% uptime. Processes 227 messages/day with 169 fully automated.",
+                    tags: ["Claude API", "22 Intents", "Self-Learning", "Hostaway API"],
+                    details: [
+                        { label: "Scripts", value: "31 custom message sequences" },
+                        { label: "Daily Volume", value: "227 messages/day, 169 automated" },
+                        { label: "Learning", value: "Self-improving feedback loop based on operator corrections" },
+                        { label: "Integration", value: "Hostaway API for property data enrichment" },
+                    ],
+                },
+                {
+                    title: "Finance Agent",
+                    version: "v3.0",
+                    description: "Handles 7 financial automation domains: deposits, owner statements, contractor payments, platform reconciliation, bank reconciliation, VAT tracking, and forecasting.",
+                    tags: ["Telleroo API", "Stripe", "7 Domains"],
+                    details: [
+                        { label: "Domains", value: "Deposits, owner statements, contractor payments, reconciliation, VAT, forecasting" },
+                        { label: "Payment Flow", value: "Telleroo API for contractor payments with auto-scheduling" },
+                        { label: "Reconciliation", value: "Automatic bank reconciliation against Stripe and Tide" },
+                        { label: "Monthly", value: "VAT tracking and forecasting for tax compliance" },
+                    ],
+                },
+                {
+                    title: "Onboarding Agent",
+                    version: "v1.0",
+                    description: "19 scripts orchestrating 11-stage pipeline from inquiry to guest arrival. Manages e-signatures, image optimization, and compliance tracking automatically.",
+                    tags: ["11-Stage Pipeline", "Signable API", "Cloudinary"],
+                    details: [
+                        { label: "Pipeline Stages", value: "11 sequential steps from booking to check-in" },
+                        { label: "Automation", value: "E-signatures via Signable, image management via Cloudinary" },
+                        { label: "Compliance", value: "Automatic tracking of documentation and guest verification" },
+                        { label: "Scripts", value: "19 templated sequences with conditional branching" },
+                    ],
+                },
+                {
+                    title: "Maintenance Agent",
+                    version: "v2.2",
+                    description: "Auto-triages maintenance requests, dispatches to contractors via WhatsApp with cascading alerts, and improves classification over time based on outcomes.",
+                    tags: ["WhatsApp API", "Auto-Triage", "Contractor Dispatch"],
+                    details: [
+                        { label: "Triage", value: "Automatic classification of 12 maintenance categories" },
+                        { label: "Dispatch", value: "WhatsApp alerts to contractors with SLA tracking" },
+                        { label: "Escalation", value: "Cascading alerts if contractor doesn't respond within 30min" },
+                        { label: "Learning", value: "Self-improving classification based on resolution outcomes" },
+                    ],
+                },
+                {
+                    title: "Voice Agent",
+                    version: "v2.0",
+                    description: "ElevenLabs Conversational AI backend on Cloudflare Workers. Handles access code queries in 32 languages with security checks and social engineering resistance.",
+                    tags: ["ElevenLabs", "Cloudflare Workers", "32 Languages", "Security"],
+                    details: [
+                        { label: "Backend", value: "ElevenLabs Conversational AI on Cloudflare Workers" },
+                        { label: "Languages", value: "Supports 32 languages for international guests" },
+                        { label: "Logic", value: "Access codes redacted unless deposit confirmed" },
+                        { label: "Security", value: "Tested against 4 social engineering attack vectors" },
+                    ],
+                },
+            ];
+
+            return (
+                <section id="agents" ref={ref} className={`reveal ${isVisible ? 'active' : ''}`}>
+                    <h2 className="section-title">Production Agents</h2>
+                    {agents.map((agent, idx) => (
+                        <AgentCard
+                            key={idx}
+                            agent={agent}
+                            expanded={expandedAgent === idx}
+                            onToggle={() => setExpandedAgent(expandedAgent === idx ? -1 : idx)}
+                        />
+                    ))}
+                </section>
+            );
+        }
+
+        // Architecture Section
+        function ArchitectureSection() {
+            const [ref, isVisible] = useReveal();
+
+            return (
+                <section id="architecture" ref={ref} className={`reveal ${isVisible ? 'active' : ''}`}>
+                    <h2 className="section-title">System Architecture</h2>
+                    <div style={{ overflowX: 'auto', padding: '0 0 8px' }}>
+                        <svg viewBox="0 0 700 240" style={{ width: '100%', maxWidth: 700, minWidth: 500, height: 'auto', display: 'block', margin: '0 auto' }}>
+                            {/* External APIs - top row */}
+                            {[
+                                { label: "Claude API", x: 60, color: "#6b3fa0" },
+                                { label: "Hostaway", x: 180, color: "#2d6a4f" },
+                                { label: "Stripe", x: 300, color: "#a0622d" },
+                                { label: "ElevenLabs", x: 420, color: "#3a5a8c" },
+                                { label: "WhatsApp", x: 540, color: "#8c3a5a" },
+                            ].map((ext, i) => (
+                                <g key={`ext${i}`}>
+                                    <rect x={ext.x} y={10} width={90} height={24} rx={4} fill="none" stroke={ext.color} strokeWidth={1} opacity={0.5} />
+                                    <text x={ext.x + 45} y={26} textAnchor="middle" fontSize={9} fontFamily="system-ui, sans-serif" fill={ext.color} fontWeight={500}>{ext.label}</text>
+                                    <line x1={ext.x + 45} y1={34} x2={[85, 205, 325, 445, 565][i]} y2={90} stroke="#ddd8d0" strokeWidth={1} strokeDasharray="4,3" />
+                                </g>
+                            ))}
+
+                            {/* Agent Layer - middle row */}
+                            {[
+                                { label: "Comms", sub: "Agent", x: 40, color: "#6b3fa0" },
+                                { label: "Finance", sub: "Agent", x: 160, color: "#a0622d" },
+                                { label: "Onboard", sub: "Agent", x: 280, color: "#2d6a4f" },
+                                { label: "Maint.", sub: "Agent", x: 400, color: "#8c3a5a" },
+                                { label: "Voice", sub: "Agent", x: 520, color: "#3a5a8c" },
+                            ].map((a, i) => (
+                                <g key={`a${i}`}>
+                                    <rect x={a.x} y={90} width={90} height={50} rx={6} fill={a.color} opacity={0.1} stroke={a.color} strokeWidth={1.5} />
+                                    <text x={a.x + 45} y={112} textAnchor="middle" fontSize={10} fontFamily="system-ui, sans-serif" fill={a.color} fontWeight={600}>{a.label}</text>
+                                    <text x={a.x + 45} y={126} textAnchor="middle" fontSize={10} fontFamily="system-ui, sans-serif" fill={a.color} fontWeight={600}>{a.sub}</text>
+                                </g>
+                            ))}
+
+                            {/* Inter-agent bus */}
+                            <line x1={85} y1={165} x2={565} y2={165} stroke="#b5ad9e" strokeWidth={1.5} />
+                            {[85, 205, 325, 445, 565].map((cx, i) => (
+                                <circle key={`dot${i}`} cx={cx} cy={165} r={3} fill="#b5ad9e" />
+                            ))}
+                            <text x={325} y={178} textAnchor="middle" fontSize={8} fontFamily="system-ui, sans-serif" fill="#b5ad9e" letterSpacing={1}>INTER-AGENT BUS</text>
+
+                            {/* Output Layer - bottom */}
+                            {[
+                                { label: "Ops Dashboard", x: 80 },
+                                { label: "Pricing Engine", x: 250 },
+                                { label: "Google Sheets", sub: "(Source of Truth)", x: 420 },
+                            ].map((b, i) => (
+                                <g key={`b${i}`}>
+                                    <rect x={b.x} y={195} width={b.sub ? 140 : 120} height={b.sub ? 36 : 28} rx={4} fill="#f3f0eb" stroke="#ddd8d0" strokeWidth={1} />
+                                    <text x={b.x + (b.sub ? 70 : 60)} y={213} textAnchor="middle" fontSize={9} fontFamily="system-ui, sans-serif" fill="#5a5550" fontWeight={500}>{b.label}</text>
+                                    {b.sub && <text x={b.x + 70} y={226} textAnchor="middle" fontSize={9} fontFamily="system-ui, sans-serif" fill="#5a5550" fontWeight={500}>{b.sub}</text>}
+                                </g>
+                            ))}
+
+                            {/* Connections: agents to bus to outputs */}
+                            <line x1={85} y1={140} x2={140} y2={195} stroke="#ddd8d0" strokeWidth={1} strokeDasharray="4,3" />
+                            <line x1={205} y1={140} x2={140} y2={195} stroke="#ddd8d0" strokeWidth={1} strokeDasharray="4,3" />
+                            <line x1={325} y1={140} x2={310} y2={195} stroke="#ddd8d0" strokeWidth={1} strokeDasharray="4,3" />
+                            <line x1={445} y1={140} x2={490} y2={195} stroke="#ddd8d0" strokeWidth={1} strokeDasharray="4,3" />
+                            <line x1={565} y1={140} x2={490} y2={195} stroke="#ddd8d0" strokeWidth={1} strokeDasharray="4,3" />
+                        </svg>
+                    </div>
+                    <div className="card" style={{ marginTop: '1.5rem' }}>
+                        <p className="card-description">
+                            <strong>System Design:</strong> Agents run asynchronously on Claude API with long context windows (200k tokens). Each agent specializes in its domain but shares common patterns: intent classification, decision trees, API orchestration, and feedback loops. The architecture scales horizontally—add properties without changing the system. All integrations route through agents; no direct system-to-system connections reduce complexity and allow agents to apply business logic.
+                        </p>
+                    </div>
+                </section>
+            );
+        }
+
+        // Integrations Section
+        function IntegrationsSection() {
+            const [ref, isVisible] = useReveal();
+
+            const integrations = [
+                "Claude API",
+                "ElevenLabs",
+                "Hostaway",
+                "Airbnb",
+                "Booking.com",
+                "Stripe",
+                "Telleroo",
+                "Tide",
+                "Signable",
+                "Cloudinary",
+                "Twilio",
+                "WhatsApp",
+                "Slack API",
+                "Google Sheets",
+                "Cloudflare Workers",
+                "Vercel",
+                "Replit",
+                "GitHub",
+                "Tailscale",
+            ];
+
+            return (
+                <section id="integrations" ref={ref} className={`reveal ${isVisible ? 'active' : ''}`}>
+                    <h2 className="section-title">API Integrations</h2>
+                    <p className="card-description" style={{ marginBottom: '2rem' }}>
+                        20+ integrations wired through agents. Each integration is called contextually by agents that apply business logic. No Zapier or n8n—custom orchestration for control.
+                    </p>
+                    <div className="integrations-grid">
+                        {integrations.map((integration, idx) => (
+                            <div key={idx} className="integration-pill">{integration}</div>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        // Operations Platform Section
+        function OperationsPlatformSection() {
+            const [ref, isVisible] = useReveal();
+
+            return (
+                <section id="operations" ref={ref} className={`reveal ${isVisible ? 'active' : ''}`}>
+                    <h2 className="section-title">Operations Platform</h2>
+
+                    <div className="card" style={{ marginBottom: '2rem' }}>
+                        <h3 className="card-title">Key Stays Assistant</h3>
+                        <p className="card-description">
+                            The WhatsApp bridge—a 4,600-line custom system that routes all incoming messages through Claude API for classification and action. Handles 227 messages/day with 169 fully automated responses.
+                        </p>
+                    </div>
+
+                    <div className="cards-grid">
+                        <div className="card">
+                            <h3 className="card-title">30+ AI Tools</h3>
+                            <p className="card-description">
+                                Custom Python scripts that agents call to execute domain-specific logic: guest verification, contractor dispatch, financial reconciliation, compliance checks, and more.
+                            </p>
+                            <div className="card-tags">
+                                <span className="tag">Python Scripts</span>
+                                <span className="tag">Tool Calling</span>
+                                <span className="tag">Domain Logic</span>
+                            </div>
+                        </div>
+
+                        <div className="card">
+                            <h3 className="card-title">Operations Dashboard</h3>
+                            <p className="card-description">
+                                221 commits. 13 sections: booking pipeline, financial summary, maintenance tickets, contractor performance, guest messages, occupancy, revenue forecasting, and more.
+                            </p>
+                            <div className="card-tags">
+                                <span className="tag">Google Sheets</span>
+                                <span className="tag">Real-time Updates</span>
+                                <span className="tag">221 Commits</span>
+                            </div>
+                        </div>
+
+                        <div className="card">
+                            <h3 className="card-title">Dynamic Pricing Engine</h3>
+                            <p className="card-description">
+                                Flask-based pricing optimization. Runs daily at 6am across 70 properties. Adjusts rates based on occupancy, seasonal demand, competitor pricing, and special events.
+                            </p>
+                            <div className="card-tags">
+                                <span className="tag">Flask</span>
+                                <span className="tag">70 Properties</span>
+                                <span className="tag">Daily Automation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="card" style={{ marginTop: '2rem' }}>
+                        <h3 className="card-title">Platform Stats</h3>
+                        <div className="detail-row">
+                            <div className="detail-label">Total Scripts</div>
+                            <div className="detail-value">85+ custom Python scripts orchestrating all workflows</div>
+                        </div>
+                        <div className="detail-row">
+                            <div className="detail-label">Code Volume</div>
+                            <div className="detail-value">112,000+ lines of production code</div>
+                        </div>
+                        <div className="detail-row">
+                            <div className="detail-label">Commits</div>
+                            <div className="detail-value">221 commits on operations dashboard</div>
+                        </div>
+                        <div className="detail-row">
+                            <div className="detail-label">Uptime</div>
+                            <div className="detail-value">99.8% over 3 years. Automated failover and alerting.</div>
+                        </div>
+                        <div className="detail-row">
+                            <div className="detail-label">Daily Load</div>
+                            <div className="detail-value">227 messages/day, 20+ financial transactions, 50+ maintenance requests, 100+ bookings sync</div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Results Section
+        function ClientResultsSection() {
+            const [ref, isVisible] = useReveal();
+
+            return (
+                <section id="results" ref={ref} className={`reveal ${isVisible ? 'active' : ''}`}>
+                    <h2 className="section-title">Measurable Client Impact</h2>
+
+                    <div className="results-grid">
+                        <div className="result-card">
+                            <div className="result-metric">
+                                <AnimatedCounter value={169} duration={2000} /> / 227
+                            </div>
+                            <div className="result-label">Messages Automated</div>
+                            <div className="result-description">
+                                74% of incoming guest messages are handled automatically without human intervention. The remaining 26% are escalated with context pre-filled.
+                            </div>
+                        </div>
+
+                        <div className="result-card">
+                            <div className="result-metric">
+                                <AnimatedCounter value={2} duration={2000} />
+                                min
+                            </div>
+                            <div className="result-label">Response Time</div>
+                            <div className="result-description">
+                                Reduced from 25+ minutes to under 2 minutes. Guests get instant responses. No more delayed confirmations losing bookings.
+                            </div>
+                        </div>
+
+                        <div className="result-card">
+                            <div className="result-metric">
+                                15–20 hrs
+                            </div>
+                            <div className="result-label">Hours Freed Per Week</div>
+                            <div className="result-description">
+                                Team of three no longer spends time on manual message processing, financial reconciliation, or routine maintenance dispatch. Time reallocated to growth.
+                            </div>
+                        </div>
+
+                        <div className="result-card">
+                            <div className="result-metric">
+                                £0 / unit
+                            </div>
+                            <div className="result-label">Cost Decoupled</div>
+                            <div className="result-description">
+                                Cost per property no longer increases with portfolio growth. 70 properties cost the same to operate as 10 properties. Automation scales linearly.
+                            </div>
+                        </div>
+
+                        <div className="result-card">
+                            <div className="result-metric">
+                                220+
+                            </div>
+                            <div className="result-label">Peak Concurrent Messages</div>
+                            <div className="result-description">
+                                System handles 220+ messages in queue without degradation. Built for high volume from day one. No scaling issues.
+                            </div>
+                        </div>
+
+                        <div className="result-card">
+                            <div className="result-metric">
+                                7
+                            </div>
+                            <div className="result-label">Financial Domains</div>
+                            <div className="result-description">
+                                Deposits, owner statements, contractor payments, platform reconciliation, bank reconciliation, VAT, forecasting. All automated. No manual accounting.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Experience Section
+        function ExperienceSection() {
+            const [ref, isVisible] = useReveal();
+
+            const timeline = [
+                {
+                    date: "2024 – Present",
+                    title: "Midlands Digital AI",
+                    subtitle: "Founder",
+                    content: "Consulting AI engineering. Help SMEs build custom automation. Same approach as Key Stays but for any business: identify high-ROI workflows, architect and build agents, hand over to ops teams."
+                },
+                {
+                    date: "2020 – Present",
+                    title: "Key Stays",
+                    subtitle: "Founder & Operations Director",
+                    content: "Short-term rental business managing 70 properties. Built the 5-agent automation stack, WhatsApp bridge, pricing engine, and operations platform. 227 messages/day, 169 auto-handled. Team of three."
+                },
+                {
+                    date: "2017 – 2020",
+                    title: "Comfort Short Stays",
+                    subtitle: "Operations Manager → Manager",
+                    content: "Built property management operations from scratch. Scaled to 150+ properties, £450k/month peak revenue, 35 cleaners. Operations collapsed during Covid but taught me everything about running at scale: workflows, staffing, coordination, customer service."
+                },
+                {
+                    date: "2019 – 2020",
+                    title: "Urbanosa",
+                    subtitle: "Operations Consultant",
+                    content: "Property management SaaS startup. Helped design operations workflows and taught team how to scale customer support."
+                },
+                {
+                    date: "2013 – 2017",
+                    title: "Nottingham Trent University",
+                    subtitle: "BSc Real Estate (Hons)",
+                    content: "RICS-accredited degree. Foundation in property valuation, commercial real estate, and asset management."
+                },
+            ];
+
+            return (
+                <section id="experience" ref={ref} className={`reveal ${isVisible ? 'active' : ''}`}>
+                    <h2 className="section-title">Experience</h2>
+                    <div className="timeline">
+                        {timeline.map((item, idx) => (
+                            <div key={idx} className="timeline-item">
+                                <div className="timeline-date">{item.date}</div>
+                                <div className="timeline-title">{item.title}</div>
+                                <div className="timeline-content">
+                                    <strong>{item.subtitle}</strong><br/>
+                                    {item.content}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        // Why Pyyne Section
+        function WhyPynneSection() {
+            const [ref, isVisible] = useReveal();
+
+            return (
+                <section id="why-pyyne" ref={ref} className={`reveal ${isVisible ? 'active' : ''}`}>
+                    <h2 className="section-title">Why Pyyne Digital</h2>
+
+                    <div className="card" style={{ marginBottom: '2rem' }}>
+                        <h3 className="card-title">This Role Is Me</h3>
+                        <p className="card-description">
+                            Pyyne builds AI automation for SME clients. That's exactly what I've been doing for 3+ years—scoping, architecting, and delivering custom agents that clients actually use. The difference is I've been doing it for my own business. Now I want to do it for 20 other SMEs who need the same approach.
+                        </p>
+                    </div>
+
+                    <div className="cards-grid">
+                        <div className="card">
+                            <h3 className="card-title">Consulting First</h3>
+                            <p className="card-description">
+                                I don't just build—I scope. I spend time understanding what workflows matter, which ones are worth automating, and what timeline is realistic. Most consultants sell every automation. I sell the right automation.
+                            </p>
+                        </div>
+
+                        <div className="card">
+                            <h3 className="card-title">I Can Sell AND Build</h3>
+                            <p className="card-description">
+                                I understand both sides. I can credibly talk to clients about their processes, then actually build the systems I promised. No hand-off to delivery that breaks what was sold.
+                            </p>
+                        </div>
+
+                        <div className="card">
+                            <h3 className="card-title">Production Mindset</h3>
+                            <p className="card-description">
+                                Everything I build runs in production with real consequences. Not POCs. This means I care about uptime, error handling, monitoring, and handover to non-technical teams. Systems you can leave alone.
+                            </p>
+                        </div>
+
+                        <div className="card">
+                            <h3 className="card-title">Repeatable Model</h3>
+                            <p className="card-description">
+                                The 5-agent pattern, the integrations framework, the dashboard approach—all of this is vertical-agnostic. I can apply the same system design to hospitality, property, e-commerce, or professional services. Faster delivery for your clients.
+                            </p>
+                        </div>
+
+                        <div className="card">
+                            <h3 className="card-title">I Built My Own Firm</h3>
+                            <p className="card-description">
+                                Midlands Digital AI is consultancy + delivery + support. I understand what it takes to run a services business: scoping rigor, delivery accountability, and customer success.
+                            </p>
+                        </div>
+
+                        <div className="card">
+                            <h3 className="card-title">SME Background</h3>
+                            <p className="card-description">
+                                7 years running property businesses. I know what SME operators care about: fast implementation, systems that work without babysitting, and ROI. Not enterprise concerns. Not startup hype.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="contact-section" style={{ marginTop: '3rem' }}>
+                        <h2>Let's Talk</h2>
+                        <p>I'm ready to scope your next client's automation. Let's find the highest-ROI workflows and build custom agents to run them.</p>
+                        <div className="contact-links">
+                            <a href="mailto:harrybeaumont0@gmail.com" className="contact-link">harrybeaumont0@gmail.com</a>
+                            <a href="https://github.com/h1beaumont" className="contact-link">github.com/h1beaumont</a>
+                            <a href="https://midlandsdigital.ai" className="contact-link">midlandsdigital.ai</a>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Footer Component
+        function Footer() {
+            return (
+                <footer>
+                    <p>
+                        Built with Claude ·
+                        <a href="mailto:harry@keystays.co.uk"> harry@keystays.co.uk</a> ·
+                        Application for AI Automation Engineer at Pyyne Digital
+                    </p>
+                </footer>
+            );
+        }
+
+        // Main App Component
+        function App() {
+            return (
+                <>
+                    <Nav />
+                    <Header />
+                    <StatsBar />
+                    <main>
+                        <RoleMatchSection />
+                        <ConsultingApproachSection />
+                        <AgentsSection />
+                        <ArchitectureSection />
+                        <IntegrationsSection />
+                        <OperationsPlatformSection />
+                        <ClientResultsSection />
+                        <ExperienceSection />
+                        <WhyPynneSection />
+                    </main>
+                    <Footer />
+                </>
+            );
+        }
+
+        // Render App
+        const root = ReactDOM.createRoot(document.getElementById('app'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
